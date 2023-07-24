@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     title: 'Ughur',
     card: 'summary_large_image',
   },
+  themeColor: '#000000',
 };
 
 export default function Home() {
