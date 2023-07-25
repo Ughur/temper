@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     title: 'Temper',
     description: 'Drawer component for React.',
     url: 'https://temper.hackermail.com',
-    siteName: 'Enuk Kowalski',
+    siteName: 'Ughur',
     locale: 'en-US',
     type: 'website',
   },
