@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --temper-theme-color: 255, 255, 255;
+  --temper-overlay-background: 255, 255, 255;
+  --temper-overlay-background-start: rgba(0, 0, 0, 0);
+  --temper-overlay-background-end: rgba(0, 0, 0, 0.4);
 }
 
 html,
