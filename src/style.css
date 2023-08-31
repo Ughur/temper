@@ -1,8 +1,20 @@
 [temper-drawer] {
-  will-change: transform;
   touch-action: none;
-  animation: show-dialog 0.5s cubic-bezier(0.32, 0.72, 0, 1);
-  transform: translateY(var(--snap-point-height, 0));
+  transform: translate3d(0, 100%, 0);
+  transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+[temper-drawer][temper-drawer-visible='true'] {
+  transform: translate3d(0, var(--snap-point-height, 0), 0);
+}
+
+[temper-overlay] {
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+[temper-overlay][temper-drawer-visible='true'] {
+  opacity: 1;
 }
 
 [temper-drawer]::after {
@@ -16,37 +28,12 @@
   height: 200%;
 }
 
-[temper-drawer][data-state='closed'] {
-  animation: hide-dialog 0.5s cubic-bezier(0.32, 0.72, 0, 1) forwards;
-}
-
-[temper-drawer][temper-closed-by-dragging='true'] {
-  animation: fake-animation 0.5s cubic-bezier(0.32, 0.72, 0, 1) forwards;
-}
-
-[temper-overlay]:not([temper-snap-points='true']) {
-  animation: show-overlay 0.5s cubic-bezier(0.32, 0.72, 0, 1);
-}
-
 [temper-overlay][temper-snap-points='true']:not([temper-snap-points-overlay='true']):not([data-state='closed']) {
   opacity: 0;
 }
 
-[temper-overlay][temper-snap-points-overlay='true'] {
+[temper-overlay][temper-snap-points-overlay='true']:not([temper-drawer-visible='false']) {
   opacity: 1;
-}
-
-[temper-overlay][temper-theme-transition='true'] {
-  animation: show-theme-overlay 0.5s cubic-bezier(0.32, 0.72, 0, 1);
-}
-
-[temper-overlay][data-state='closed']:not([temper-snap-points='true']),
-[temper-overlay][data-state='closed'][temper-snap-points-overlay='true'] {
-  animation: hide-overlay 0.5s cubic-bezier(0.32, 0.72, 0, 1);
-}
-
-[temper-overlay][temper-theme-transition='true'][data-state='closed'] {
-  animation: hide-theme-overlay 0.5s cubic-bezier(0.32, 0.72, 0, 1) forwards;
 }
 
 /* This will allow us to not animate via animation, but still benefit from delaying unmount via Radix. */
@@ -54,42 +41,6 @@
   from {
   }
   to {
-  }
-}
-
-@keyframes show-dialog {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-    transform: translateY(var(--snap-point-height, 0));
-  }
-}
-
-@keyframes hide-dialog {
-  from {
-    transform: translateY(var(--hide-from, 0));
-  }
-  to {
-    transform: translateY(var(--hide-to, 100%));
-  }
-}
-
-@keyframes show-overlay {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes hide-overlay {
-  from {
-    opacity: var(--opacity-from, 1);
-  }
-  to {
-    opacity: 0;
   }
 }
 
