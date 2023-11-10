@@ -1,89 +1,109 @@
-https://github.com/Ughur/temper/assets/36730035/fdf8c5e8-ade8-433b-8bb0-4ce10e722516
+# Temper
 
-Temper is an unstyled drawer component for React that can be used as a Dialog replacement on tablet and mobile devices. It uses [Radix's Dialog primitive](https://www.radix-ui.com/docs/primitives/components/dialog#trigger) under the hood and is inspired by [this tweet](https://twitter.com/devongovett/status/1674470185783402496).
+An unstyled, accessible, and performant drawer component for React. Designed as a flexible modal/drawer pattern for desktop, tablet, and mobile interfaces.
 
-## Usage
+---
 
-To start using the library, install it in your project:
+## Features
+
+- ⚡ **Performant & Smooth**: Built with physics-based drag interactions and touch gestures.
+- ♿ **Accessible**: Full keyboard navigation, focus trap, and ARIA attributes powered by Radix UI.
+- 📐 **Snap Points**: Supports multiple snap points, custom height steps, and expandability.
+- 🎨 **Unstyled**: Complete freedom to style with Tailwind CSS, CSS Modules, or Styled Components.
+- 📱 **Mobile First**: Built for seamless touch interactions and native sheet feelings on mobile & desktop.
+
+---
+
+## Installation
+
+Install via your preferred package manager:
 
 ```bash
 npm install temper
+# or
+pnpm add temper
+# or
+yarn add temper
 ```
 
-Use the drawer in your app.
+---
 
-```jsx
+## Quick Start
+
+```tsx
 import { Drawer } from 'temper';
 
-function MyComponent() {
+export function Example() {
   return (
     <Drawer.Root>
-      <Drawer.Trigger>Open</Drawer.Trigger>
+      <Drawer.Trigger className="px-4 py-2 bg-black text-white rounded-md">
+        Open Drawer
+      </Drawer.Trigger>
+      
       <Drawer.Portal>
-        <Drawer.Content>
-          <p>Content</p>
+        <Drawer.Overlay className="fixed inset-0 bg-black/40" />
+        <Drawer.Content className="bg-white flex flex-col rounded-t-[10px] h-[96%] mt-24 fixed bottom-0 left-0 right-0 p-6">
+          <div className="mx-auto w-12 h-1.5 flex-shrink-0 rounded-full bg-gray-300 mb-8" />
+          
+          <Drawer.Title className="text-lg font-medium mb-2">
+            Drawer Title
+          </Drawer.Title>
+
+          <Drawer.Description className="text-gray-600 mb-4">
+            This is a clean, accessible drawer component.
+          </Drawer.Description>
+          
+          <Drawer.Close className="mt-auto py-2 bg-gray-100 rounded-md text-sm">
+            Close
+          </Drawer.Close>
         </Drawer.Content>
-        <Drawer.Overlay />
       </Drawer.Portal>
     </Drawer.Root>
   );
 }
 ```
 
-## Examples
+---
 
-Play around with the examples on codesandbox:
+## Background Scaling Effect
 
-- [With scaled background](https://codesandbox.io/p/sandbox/drawer-with-scale-g24vvh?file=%2Fapp%2Fmy-drawer.tsx%3A1%2C1)
-- [Without scaled background](https://codesandbox.io/p/sandbox/drawer-with-scale-forked-nx2glp?file=%2Fapp%2Fmy-drawer.tsx%3A4%2C1)
-- [With snap points](https://codesandbox.io/p/sandbox/drawer-non-dismissable-forked-jchtff?file=/app/my-drawer.tsx:1,1)
-- [Scrollable with inputs](https://codesandbox.io/p/sandbox/drawer-with-scale-forked-73f8jw?file=%2Fapp%2Fmy-drawer.tsx%3A1%2C1)
-- [Nested drawers](https://codesandbox.io/p/sandbox/drawer-non-dismissable-forked-5z2r3j?file=%2Fapp%2Fmy-drawer.tsx%3A49%2C16-49%2C246)
-- [Non-dismissible](https://codesandbox.io/p/sandbox/drawer-without-scale-forked-kxh9j5?file=%2Fapp%2Fmy-drawer.tsx%3A1%2C1)
+To scale the page background when the drawer opens (iOS modal style), wrap your application content with `data-temper-drawer-wrapper`:
+
+```tsx
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <div data-temper-drawer-wrapper>
+      {children}
+    </div>
+  );
+}
+```
+
+Then enable background scaling on the drawer:
+
+```tsx
+<Drawer.Root shouldScaleBackground>
+  {/* Drawer components */}
+</Drawer.Root>
+```
+
+---
 
 ## API Reference
 
-### Root
+| Component | Description |
+| :--- | :--- |
+| `Drawer.Root` | Main container managing drawer state, snap points, and open/close events. |
+| `Drawer.Trigger` | The button or element that opens the drawer. |
+| `Drawer.Portal` | Portals the drawer content outside the current DOM hierarchy. |
+| `Drawer.Overlay` | Semi-transparent background overlay behind the active drawer. |
+| `Drawer.Content` | Main container for drawer inner contents. |
+| `Drawer.Title` | Accessible title for screen readers. |
+| `Drawer.Description` | Accessible description for screen readers. |
+| `Drawer.Close` | Button to trigger drawer closure. |
 
-Contains all parts of a dialog. Use `shouldScaleBackground` to enable background scaling, it requires an element with `[temper-drawer-wrapper]` data attribute to scale its background.
-Can be controlled with the `value` and `onOpenChange` props. Can be opened by default via `defaultOpen` prop.
+---
 
-Additional props:
+## License
 
-`closeThreshold`: Number between 0 and 1 that determines when the drawer should be closed. Example: threshold of 0.5 would close the drawer if the user swiped for 50% of the height of the drawer or more.
-
-`scrollLockTimeout`: Duration for which the drawer is not draggable after scrolling content inside of the drawer. Defaults to 500ms
-
-`snapPoints`: Array of numbers from 0 to 100 that corresponds to % of the screen a given snap point should take up. Should go from least visible. Example `[0.2, 0.5, 0.8]`. You can also use px values, which doesn't take screen height into account.
-
-`fadeFromIndex`: Index of a `snapPoint` from which the overlay fade should be applied. Defaults to the last snap point.
-
-`modal`: When `false`it allows to interact with elements outside of the drawer without closing it. Defaults to`true`.
-
-### Trigger
-
-The button that opens the dialog. [Props](https://www.radix-ui.com/docs/primitives/components/dialog#trigger).
-
-### Content
-
-Content that should be rendered in the drawer. [Props](https://www.radix-ui.com/docs/primitives/components/dialog#content).
-
-### Overlay
-
-A layer that covers the inert portion of the view when the dialog is open. [Props](https://www.radix-ui.com/docs/primitives/components/dialog#overlay).
-
-### Title
-
-An accessible title to be announced when the dialog is opened. [Props](https://www.radix-ui.com/docs/primitives/components/dialog#title).
-
-### Description
-
-An optional accessible description to be announced when the dialog is opened. [Props](https://www.radix-ui.com/docs/primitives/components/dialog#description).
-
-### Close
-
-The button that closes the dialog. [Props](https://www.radix-ui.com/docs/primitives/components/dialog#close).
-
-### Portal
-
-Portals your drawer into the body.
+[MIT](LICENSE.md) © Ughur
