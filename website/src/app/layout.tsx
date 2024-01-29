@@ -11,7 +11,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className="antialiased text-gray-900 bg-gray-50">
-        <main temper-drawer-wrapper="">{children}</main>
+        <div temper-drawer-wrapper="">{children}</div>
         <Analytics />
       </body>
     </html>
