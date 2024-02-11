@@ -159,7 +159,7 @@ function Root({
     const swipeAmount = drawerRef.current ? getTranslate(drawerRef.current, direction) : null;
     const date = new Date();
 
-    if (element.hasAttribute('data-temper-no-drag')) {
+    if (element.hasAttribute('data-temper-no-drag') || element.closest('[data-temper-no-drag]')) {
       return false;
     }
 
