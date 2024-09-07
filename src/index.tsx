@@ -243,7 +243,7 @@ export function Root({
 
       // We need to capture last time when drag with scroll was triggered and have a timeout between
       const absDraggedDistance = Math.abs(draggedDistance);
-      const wrapper = document.querySelector('[temper-drawer-wrapper]');
+      const wrapper = document.querySelector('[data-temper-drawer-wrapper]');
 
       // Calculate the percentage dragged, where 1 is the closed position
       let percentageDragged = absDraggedDistance / drawerHeightRef.current;
@@ -464,7 +464,7 @@ export function Root({
 
   function resetDrawer() {
     if (!drawerRef.current) return;
-    const wrapper = document.querySelector('[temper-drawer-wrapper]');
+    const wrapper = document.querySelector('[data-temper-drawer-wrapper]');
     const currentSwipeAmount = getTranslate(drawerRef.current, direction);
 
     set(drawerRef.current, {
@@ -600,7 +600,7 @@ export function Root({
   }, [visible]);
 
   function scaleBackground(open: boolean) {
-    const wrapper = document.querySelector('[temper-drawer-wrapper]');
+    const wrapper = document.querySelector('[data-temper-drawer-wrapper]');
 
     if (!wrapper || !shouldScaleBackground) return;
 
@@ -855,13 +855,13 @@ export const Handle = React.forwardRef<HTMLDivElement, HandleProps>(function (
       }}
       // onPointerUp is already handled by the content component
       ref={ref}
-      temper-drawer-visible={visible ? 'true' : 'false'}
-      temper-handle=""
+      data-temper-drawer-visible={visible ? 'true' : 'false'}
+      data-temper-handle=""
       aria-hidden="true"
       {...rest}
     >
       {/* Expand handle's hit area beyond what's visible to ensure a 44x44 tap target for touch devices */}
-      <span temper-handle-hitarea="" aria-hidden="true">
+      <span data-temper-handle-hitarea="" aria-hidden="true">
         {children}
       </span>
     </div>
@@ -880,10 +880,10 @@ export const Overlay = React.forwardRef<HTMLDivElement, React.ComponentPropsWith
       <DialogPrimitive.Overlay
         onMouseUp={onRelease}
         ref={composedRef}
-        temper-drawer-visible={visible ? 'true' : 'false'}
-        temper-overlay=""
-        temper-snap-points={isOpen && hasSnapPoints ? 'true' : 'false'}
-        temper-snap-points-overlay={isOpen && shouldFade ? 'true' : 'false'}
+        data-temper-drawer-visible={visible ? 'true' : 'false'}
+        data-temper-overlay=""
+        data-temper-snap-points={isOpen && hasSnapPoints ? 'true' : 'false'}
+        data-temper-snap-points-overlay={isOpen && shouldFade ? 'true' : 'false'}
         {...rest}
       />
     );
@@ -952,9 +952,9 @@ export const Content = React.forwardRef<HTMLDivElement, ContentProps>(function (
 
   return (
     <DialogPrimitive.Content
-      temper-drawer=""
-      temper-drawer-direction={direction}
-      temper-drawer-visible={visible ? 'true' : 'false'}
+      data-temper-drawer-direction={direction}
+      data-temper-drawer=""
+      data-temper-drawer-visible={visible ? 'true' : 'false'}
       {...rest}
       ref={composedRef}
       style={
