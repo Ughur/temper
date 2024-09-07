@@ -6,7 +6,7 @@ import { Drawer } from 'temper';
 export default function Page() {
   const [open, setOpen] = useState(false);
   return (
-    <div className="w-screen h-screen bg-white p-8 flex justify-center items-center" temper-drawer-wrapper="">
+    <div className="w-screen h-screen bg-white p-8 flex justify-center items-center" data-temper-drawer-wrapper="">
       <Drawer.Root open={open} onOpenChange={setOpen}>
         <Drawer.Trigger asChild>
           <button data-testid="trigger" className="text-2xl">

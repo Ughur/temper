@@ -17,7 +17,7 @@ test.describe('Non-dismissible', () => {
 
   test('should not close when dragged down', async ({ page }) => {
     await openDrawer(page);
-    await page.hover('[temper-drawer]');
+    await page.hover('[data-temper-drawer]');
     await page.mouse.down();
     await page.mouse.move(0, 800);
     await page.mouse.up();
