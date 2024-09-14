@@ -101,7 +101,7 @@
   opacity: 1;
 }
 
-[data-temper-drawer]::after {
+[data-temper-drawer]:not([data-temper-custom-container='true'])::after {
   content: '';
   position: absolute;
   background: inherit;
