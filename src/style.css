@@ -88,7 +88,7 @@
 [data-temper-overlay][data-temper-snap-points='false'][data-state='open'] {
   animation-name: fadeIn;
 }
-[data-temper-overlay][data-temper-snap-points='false'][data-state='closed'] {
+[data-temper-overlay][data-state='closed'] {
   animation-name: fadeOut;
 }
 
