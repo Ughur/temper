@@ -21,6 +21,8 @@ export function useScaleBackground() {
         (document.querySelector('[data-temper-drawer-wrapper]') as HTMLElement) ||
         (document.querySelector('[temper-drawer-wrapper]') as HTMLElement);
 
+      if (!wrapper) return;
+
       const bodyAndWrapperCleanup = chain(
         setBackgroundColorOnScale && !noBodyStyles ? assignStyle(document.body, { background: 'black' }) : noop,
         assignStyle(wrapper, {
