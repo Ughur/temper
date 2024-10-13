@@ -47,7 +47,7 @@
 }
 
 [data-temper-drawer][data-temper-snap-points='true'][data-temper-drawer-direction='right'] {
-  transform: translate3d(var(--initial-transform, 100%) %, 0, 0);
+  transform: translate3d(var(--initial-transform, 100%), 0, 0);
 }
 
 [data-temper-drawer][data-temper-delayed-snap-points='true'][data-temper-drawer-direction='top'] {
@@ -75,6 +75,10 @@
 }
 [data-temper-overlay][data-state='closed'] {
   animation-name: fadeOut;
+}
+
+[data-temper-animate='false'] {
+  animation: none !important;
 }
 
 [data-temper-overlay][data-temper-snap-points='true'] {
