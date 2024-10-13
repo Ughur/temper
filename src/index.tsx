@@ -282,6 +282,11 @@ export function Root({
     const swipeAmount = drawerRef.current ? getTranslate(drawerRef.current, direction) : null;
     const date = new Date();
 
+    // Fixes https://github.com/Ughur/temper/issues/483
+    if (element.tagName === 'SELECT') {
+      return false;
+    }
+
     if (element.hasAttribute('data-temper-no-drag') || element.closest('[data-temper-no-drag]')) {
       return false;
     }
