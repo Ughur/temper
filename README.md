@@ -19,11 +19,11 @@ An unstyled, accessible, and performant drawer component for React. Designed as 
 Install via your preferred package manager:
 
 ```bash
-npm install temper
+npm install @ughur/temper
 # or
-pnpm add temper
+pnpm add @ughur/temper
 # or
-yarn add temper
+yarn add @ughur/temper
 ```
 
 ---
@@ -31,7 +31,7 @@ yarn add temper
 ## Quick Start
 
 ```tsx
-import { Drawer } from 'temper';
+import { Drawer } from '@ughur/temper';
 
 export function Example() {
   return (
