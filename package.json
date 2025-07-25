@@ -1,5 +1,5 @@
 {
-  "name": "temper",
+  "name": "@ughur/temper",
   "version": "1.1.2",
   "description": "Drawer component for React.",
   "main": "./dist/index.js",
@@ -22,7 +22,7 @@
   "scripts": {
     "type-check": "tsc --noEmit",
     "build": "pnpm type-check && bunchee && pnpm copy-assets",
-    "copy-assets": "cp -r ./src/style.css ./style.css",
+    "copy-assets": "node -e \"require('fs').copyFileSync('./src/style.css', './style.css')\"",
     "dev": "bunchee --watch",
     "dev:test": "turbo run dev --filter=test...",
     "format": "prettier --write .",
